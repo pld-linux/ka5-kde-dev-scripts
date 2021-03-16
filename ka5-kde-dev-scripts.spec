@@ -1,15 +1,15 @@
-%define		kdeappsver	19.04.1
+%define		kdeappsver	20.12.3
 %define		kframever	5.56.0
 %define		qtver		5.9.0
 %define		kaname		kde-dev-scripts
 Summary:	Kde dev scripts
 Name:		ka5-%{kaname}
-Version:	19.04.1
+Version:	20.12.3
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
-Source0:	http://download.kde.org/stable/applications/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	a4cff0e7d09c73c583fb875f6d7fe16a
+Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
+# Source0-md5:	fa16518411cff56cb398ab8c3376503b
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
@@ -42,6 +42,11 @@ cd build
 %install
 rm -rf $RPM_BUILD_ROOT
 %ninja_install -C build
+
+find $RPM_BUILD_ROOT%{_bindir} -type f -exec sed -i -e 's#/usr/bin/env perl#/usr/bin/perl#' '{}' +
+find $RPM_BUILD_ROOT%{_bindir} -type f -exec sed -i -e 's#/usr/bin/env python3#/usr/bin/python3#' '{}' +
+find $RPM_BUILD_ROOT%{_bindir} -type f -exec sed -i -e 's#/usr/bin/env python#/usr/bin/python2#' '{}' +
+find $RPM_BUILD_ROOT%{_bindir} -type f -exec sed -i -e 's#/usr/bin/env bash#/bin/bash#' '{}' +
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -126,8 +131,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ca) %{_mandir}/ca/man1/fixincludes.1*
 %lang(ca) %{_mandir}/ca/man1/pruneemptydirs.1*
 %lang(ca) %{_mandir}/ca/man1/qtdoc.1*
-%lang(ca) %{_mandir}/ca/man1/reportview.1*
-%lang(ca) %{_mandir}/ca/man1/transxx.1*
 %lang(ca) %{_mandir}/ca/man1/zonetab2pot.py.1*
 %lang(da) %{_mandir}/da/man1/adddebug.1*
 %lang(da) %{_mandir}/da/man1/cheatmake.1*
@@ -143,7 +146,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(da) %{_mandir}/da/man1/fixincludes.1*
 %lang(da) %{_mandir}/da/man1/pruneemptydirs.1*
 %lang(da) %{_mandir}/da/man1/qtdoc.1*
-%lang(da) %{_mandir}/da/man1/reportview.1*
 %lang(da) %{_mandir}/da/man1/zonetab2pot.py.1*
 %lang(de) %{_mandir}/de/man1/adddebug.1*
 %lang(de) %{_mandir}/de/man1/cheatmake.1*
@@ -160,8 +162,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(de) %{_mandir}/de/man1/fixincludes.1*
 %lang(de) %{_mandir}/de/man1/pruneemptydirs.1*
 %lang(de) %{_mandir}/de/man1/qtdoc.1*
-%lang(de) %{_mandir}/de/man1/reportview.1*
-%lang(de) %{_mandir}/de/man1/transxx.1*
 %lang(de) %{_mandir}/de/man1/zonetab2pot.py.1*
 %lang(es) %{_mandir}/es/man1/adddebug.1*
 %lang(es) %{_mandir}/es/man1/cheatmake.1*
@@ -178,8 +178,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(es) %{_mandir}/es/man1/fixincludes.1*
 %lang(es) %{_mandir}/es/man1/pruneemptydirs.1*
 %lang(es) %{_mandir}/es/man1/qtdoc.1*
-%lang(es) %{_mandir}/es/man1/reportview.1*
-%lang(es) %{_mandir}/es/man1/transxx.1*
 %lang(es) %{_mandir}/es/man1/zonetab2pot.py.1*
 %lang(et) %{_mandir}/et/man1/qtdoc.1*
 %lang(fr) %{_mandir}/fr/man1/adddebug.1*
@@ -197,8 +195,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_mandir}/fr/man1/fixincludes.1*
 %lang(fr) %{_mandir}/fr/man1/pruneemptydirs.1*
 %lang(fr) %{_mandir}/fr/man1/qtdoc.1*
-%lang(fr) %{_mandir}/fr/man1/reportview.1*
-%lang(fr) %{_mandir}/fr/man1/transxx.1*
 %lang(fr) %{_mandir}/fr/man1/zonetab2pot.py.1*
 %lang(gl) %{_mandir}/gl/man1/adddebug.1*
 %lang(gl) %{_mandir}/gl/man1/cheatmake.1*
@@ -214,8 +210,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(gl) %{_mandir}/gl/man1/fixincludes.1*
 %lang(gl) %{_mandir}/gl/man1/pruneemptydirs.1*
 %lang(gl) %{_mandir}/gl/man1/qtdoc.1*
-%lang(gl) %{_mandir}/gl/man1/reportview.1*
-%lang(gl) %{_mandir}/gl/man1/transxx.1*
 %lang(gl) %{_mandir}/gl/man1/zonetab2pot.py.1*
 %lang(it) %{_mandir}/it/man1/adddebug.1*
 %lang(it) %{_mandir}/it/man1/cheatmake.1*
@@ -232,8 +226,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(it) %{_mandir}/it/man1/fixincludes.1*
 %lang(it) %{_mandir}/it/man1/pruneemptydirs.1*
 %lang(it) %{_mandir}/it/man1/qtdoc.1*
-%lang(it) %{_mandir}/it/man1/reportview.1*
-%lang(it) %{_mandir}/it/man1/transxx.1*
 %lang(it) %{_mandir}/it/man1/zonetab2pot.py.1*
 %lang(nl) %{_mandir}/nl/man1/adddebug.1*
 %lang(nl) %{_mandir}/nl/man1/cheatmake.1*
@@ -250,8 +242,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(nl) %{_mandir}/nl/man1/fixincludes.1*
 %lang(nl) %{_mandir}/nl/man1/pruneemptydirs.1*
 %lang(nl) %{_mandir}/nl/man1/qtdoc.1*
-%lang(nl) %{_mandir}/nl/man1/reportview.1*
-%lang(nl) %{_mandir}/nl/man1/transxx.1*
 %lang(nl) %{_mandir}/nl/man1/zonetab2pot.py.1*
 %lang(pt) %{_mandir}/pt/man1/adddebug.1*
 %lang(pt) %{_mandir}/pt/man1/cheatmake.1*
@@ -268,8 +258,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pt) %{_mandir}/pt/man1/fixincludes.1*
 %lang(pt) %{_mandir}/pt/man1/pruneemptydirs.1*
 %lang(pt) %{_mandir}/pt/man1/qtdoc.1*
-%lang(pt) %{_mandir}/pt/man1/reportview.1*
-%lang(pt) %{_mandir}/pt/man1/transxx.1*
 %lang(pt) %{_mandir}/pt/man1/zonetab2pot.py.1*
 %lang(pt_BR) %{_mandir}/pt_BR/man1/adddebug.1*
 %lang(pt_BR) %{_mandir}/pt_BR/man1/cheatmake.1*
@@ -286,8 +274,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pt_BR) %{_mandir}/pt_BR/man1/fixincludes.1*
 %lang(pt_BR) %{_mandir}/pt_BR/man1/pruneemptydirs.1*
 %lang(pt_BR) %{_mandir}/pt_BR/man1/qtdoc.1*
-%lang(pt_BR) %{_mandir}/pt_BR/man1/reportview.1*
-%lang(pt_BR) %{_mandir}/pt_BR/man1/transxx.1*
 %lang(pt_BR) %{_mandir}/pt_BR/man1/zonetab2pot.py.1*
 %lang(sv) %{_mandir}/sv/man1/adddebug.1*
 %lang(sv) %{_mandir}/sv/man1/cheatmake.1*
@@ -304,8 +290,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(sv) %{_mandir}/sv/man1/fixincludes.1*
 %lang(sv) %{_mandir}/sv/man1/pruneemptydirs.1*
 %lang(sv) %{_mandir}/sv/man1/qtdoc.1*
-%lang(sv) %{_mandir}/sv/man1/reportview.1*
-%lang(sv) %{_mandir}/sv/man1/transxx.1*
 %lang(sv) %{_mandir}/sv/man1/zonetab2pot.py.1*
 %lang(uk) %{_mandir}/uk/man1/adddebug.1*
 %lang(uk) %{_mandir}/uk/man1/cheatmake.1*
@@ -322,8 +306,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(uk) %{_mandir}/uk/man1/fixincludes.1*
 %lang(uk) %{_mandir}/uk/man1/pruneemptydirs.1*
 %lang(uk) %{_mandir}/uk/man1/qtdoc.1*
-%lang(uk) %{_mandir}/uk/man1/reportview.1*
-%lang(uk) %{_mandir}/uk/man1/transxx.1*
 %lang(uk) %{_mandir}/uk/man1/zonetab2pot.py.1*
 %lang(C) %{_mandir}/man1/adddebug.1*
 %lang(C) %{_mandir}/man1/cheatmake.1*
@@ -340,6 +322,4 @@ rm -rf $RPM_BUILD_ROOT
 %lang(C) %{_mandir}/man1/fixincludes.1*
 %lang(C) %{_mandir}/man1/pruneemptydirs.1*
 %lang(C) %{_mandir}/man1/qtdoc.1*
-%lang(C) %{_mandir}/man1/reportview.1*
-%lang(C) %{_mandir}/man1/transxx.1*
 %lang(C) %{_mandir}/man1/zonetab2pot.py.1*
