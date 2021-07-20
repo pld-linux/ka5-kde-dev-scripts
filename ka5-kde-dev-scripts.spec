@@ -28,6 +28,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Scripts and setting files useful during development of KDE software.
 
+%description -l pl.UTF-8
+Skrypty i pliki ustawień użyteczne przy programowaniu KDE.
+
 %prep
 %setup -q -n %{kaname}-%{version}
 
